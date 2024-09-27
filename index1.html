@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Sign Language Translator</title>
+        <script>
+            const cameraVideoStream = document.getElementById('camera-stream');
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia({ video: true })) {
+  navigator.mediaDevices
+    .getUserMedia({ video: true })
+    .then ((stream) => {
+            cameraVideoStream.srcObject = stream
+            cameraVideoStream.play()
+    })
+}
+        </script>
+    </head>
+    <body>
+    <video id="camera-stream" autoplay loop muted></video>
+    <source src="" >
+    </video>
+
+    </body>
+
+  </html>
+

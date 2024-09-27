@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Access Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #camera-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #camera-btn:hover {
+            background-color: #3e8e41;
+        }
+
+        #camera-view {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        #audio-output-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #audio-output-btn:hover {
+            background-color: #3e8e41;
+        }
+
+        #audio-output {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button id="camera-btn">Access Camera</button>
+        <div id="camera-view"></div>
+        <button id="audio-output-btn">Get Audio Output</button>
+        <div id="audio-output"></div>
+    </div>
+    <script>
+        const cameraBtn = document.getElementById('camera-btn');
+        const cameraView = document.getElementById('camera-view');
+        const audioOutputBtn = document.getElementById('audio-output-btn');
+        const audioOutput = document.getElementById('audio-output');
+
+        let stream;
+
+        cameraBtn.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                // Create a video element to display the video output
+                const video = document.createElement('video');
+                video.srcObject = stream;
+                video.play();
+                video.width = cameraView.offsetWidth; // Set the video width to the container width
+                video.height = cameraView.offsetHeight; // Set the video height to the container height
+                cameraView.appendChild(video);
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+            }
+        });
+
+        audioOutputBtn.addEventListener('click', async () => {
+            try {
+                const audioTracks = stream.getAudioTracks();
+                if (audioTracks.length > 0) {
+                    const audioTrack = audioTracks[0];
+                    const audioContext = new AudioContext();
+                    const source = audioContext.createMediaStreamSource(stream);
+                    const gain = audioContext.createGain();
+                    gain.gain.value = 1;
+                    source.connect(gain);
+                    gain.connect(audioContext.destination);
+                    audioOutput.innerHTML = 'Audio output enabled';
+                } else {
+                    audioOutput.innerHTML = 'No audio tracks available';
+                }
+            } catch (error) {
+                console.error('Error accessing audio:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>

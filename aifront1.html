@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVAZ</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: rgb(247, 247, 247);
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            background-color: #eac0f9;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-bar:hover {
+            background-color: #e7a9fd;
+        }
+
+        .nav-bar .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 1.5px;
+            animation: bounceIn 2s ease;
+        }
+
+        .nav-bar ul {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .nav-bar ul li {
+            margin-left: 25px;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .nav-bar ul li:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-bar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-bar ul li a:hover {
+            color: #c4e8ee;
+        }
+
+        /* Main Section */
+        .main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            background: linear-gradient(to right, #f4f163, #cfd575);
+            margin-bottom: 30px;
+            height: 400px;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main .welcome h1 {
+            font-size: 56px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .main .welcome p {
+            font-size: 22px;
+            margin: 20px 0;
+            animation: fadeInUp 2s ease;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #eac0f9;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer p a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dashboard h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 42px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #camera-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 42%;
+        }
+
+        #camera-btn:hover {
+            background-color: #3e8e41;
+        }
+
+        #camera-view {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        #audio-output-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-left: 41%;
+        }
+
+        #audio-output-btn:hover {
+            background-color: #498c4c;
+        }
+
+        /*#audio-output {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            border-radius: 10px;
+        }*/
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <script src="languageSwitch.js"></script>
+    <nav class="nav-bar">
+        <div class="logo" id="logo">
+            AVAZ
+        </div>
+        <ul>
+            <li><a href="../before_log/homepage.html" id="home">Home</a></li>
+            <li><a href="../before_log/about.html" id="about">About</a></li>
+            <li><a href="../before_log/contact.html" id="contact">Contact</a></li>
+            <li><a id="login">Login</li>
+        </ul>
+    </nav>
+
+
+    <!-- Main Section -->
+    <section class="main">
+        <div class="welcome">
+            <h1>Welcome to AVAZ</h1>
+            <p>Sign Language to Speech Translator</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div id="camera-view"></div><br>
+        <button id="camera-btn">Access Camera</button>
+        <div id="audio-output"></div>
+        <button id="audio-output-btn">Get Audio Output</button>
+    </div>
+    <script>
+        const cameraBtn = document.getElementById('camera-btn');
+        const cameraView = document.getElementById('camera-view');
+        const audioOutputBtn = document.getElementById('audio-output-btn');
+        const audioOutput = document.getElementById('audio-output');
+
+        let stream;
+
+        cameraBtn.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                // Create a video element to display the video output
+                const video = document.createElement('video');
+                video.srcObject = stream;
+                video.play();
+                video.width = cameraView.offsetWidth; // Set the video width to the container width
+                video.height = cameraView.offsetHeight; // Set the video height to the container height
+                cameraView.appendChild(video);
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+            }
+        });
+
+        audioOutputBtn.addEventListener('click', async () => {
+            try {
+                const audioTracks = stream.getAudioTracks();
+                if (audioTracks.length > 0) {
+                    const audioTrack = audioTracks[0];
+                    const audioContext = new AudioContext();
+                    const source = audioContext.createMediaStreamSource(stream);
+                    const gain = audioContext.createGain();
+                    gain.gain.value = 1;
+                    source.connect(gain);
+                    gain.connect(audioContext.destination);
+                    audioOutput.innerHTML = 'Audio output enabled';
+                } else {
+                    audioOutput.innerHTML = 'No audio tracks available';
+                }
+            } catch (error) {
+                console.error('Error accessing audio:', error);
+            }
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Avaz. All Rights Reserved. | <a href="#">Privacy Policy</a></p>
+    </footer>
+</body>
+
+</html>

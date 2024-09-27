@@ -1,0 +1,9 @@
+
+ipython  
+psutil  
+thop>=0.1.1  
+streamlit
+numpy
+# albumentations>=1.0.3
+# pycocotools>=2.0  # COCO mAP
+# roboflow
